@@ -1,0 +1,9 @@
+1. preprocess
+	a. clean useless information from tweets (i)
+		involves a few things. majority of tweets have two numbers at the start, a tweet body and a date and time at the end. we want to just pull the body and get rid of the rest.
+
+		Number of tweets: 3847
+		# with date and time at end: 3738
+		# with two numbers at start: 3744
+
+		
