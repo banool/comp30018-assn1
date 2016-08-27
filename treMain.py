@@ -12,14 +12,30 @@ https://stackoverflow.com/questions/17886647/cant-install-via-pip-because-of-egg
 """
 
 import tre
+import preprocess
 
-test = tre.compile(r"hey")
-fuzz = tre.Fuzzyness(0)
+tweetFile = "porteousd_tweets_small.txt"
+with open(tweetFile, "r") as f:
+    tweets = f.read().splitlines()
 
-mine = test.search("hey", fuzz)
+locationsFile = "geonames/US-loc-names.txt"
+with open(locationsFile, "r") as f:
+    locations = f.read().splitlines()
+
+print("Preprocessing tweets...")
+tweets = preprocess.preprocessTweets(tweets)
+print("Preprocessing locations...")
+locations = preprocess.preprocessLocations(locations)
+
+test = tre.compile(r"new york", tre.EXTENDED)
+fz = tre.Fuzzyness(maxerr = 0)
+
+for t in tweets:
+    m = test.search(t, fz)
+    if m:
+        print(m.groups())
+        print(m[0])
 
 # Handy line that shows what methods an object has
 # from here: https://stackoverflow.com/questions/34439/finding-what-methods-an-object-has
 # print([method for method in dir(mine) if callable(getattr(mine, method))])
-
-print mine.groups()
