@@ -6,4 +6,9 @@
 		# with date and time at end: 3738
 		# with two numbers at start: 3744
 
+
+discard small words?
+get rid of words in tweet that arent locations??????
+
+coudl tokenize but local edit distance as an alg focuses on substrings anyway. toeknizing would make more sense for global edit distance.
 		
