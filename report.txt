@@ -12,3 +12,14 @@ get rid of words in tweet that arent locations??????
 
 coudl tokenize but local edit distance as an alg focuses on substrings anyway. toeknizing would make more sense for global edit distance.
 		
+Abstract
+
+Introduction
+
+Preprocessing
+
+Algorithm and Data Structure
+
+Efficiency
+
+Effectiveness (various correctness measures)

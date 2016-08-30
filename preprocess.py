@@ -1,14 +1,33 @@
 #!/usr/bin/python3
 
 import re
+from collections import Counter
+
+def makeTuple(inp):
+    """
+    Converting each element to a tuple.
+    The second element in the tuple will be the original element.
+    """
+    output = []
+    for i in inp:
+        output.append((i, i))
+    return output
+
+def removeDuplicates(inp):
+    # Can't use a set because we have tuples.
+    # We want to remove based on the first element being the same,
+    # because the second (original) element will be different.
+    count = Counter(i[0] for i in inp)
+    out = [i for i in inp if count[i[0]] == 1]
+    return out
 
 def toLower(inp):
     print("    Converting to lower case.")
     output = []
 
-    for i in inp:
+    for i, orig in inp:
         new = i.lower()
-        output.append(new)
+        output.append((new, orig))
 
     return output
 
@@ -16,9 +35,9 @@ def removePunctuation(inp):
     print("    Removing punctuation.")
     output = []
 
-    for i in inp:
+    for i, orig in inp:
         new = re.sub(r'[^\w\s]','', i)
-        output.append(new)
+        output.append((new, orig))
 
     return output
 
@@ -31,9 +50,9 @@ def removeNumbers(inp):
 
     output = []
 
-    for i in inp:
+    for i, orig in inp:
         new = " ".join([w for w in i.split() if not any(c.isdigit() for c in w)])
-        output.append(new)
+        output.append((new, orig))
 
     return output
 
@@ -51,9 +70,18 @@ def getWordsNoLocationsDict(locations):
     with open(wordsFile, "r") as f:
         wordsDict = f.read().splitlines()
 
-    wordsDict = toLower(removePunctuation(wordsDict))
+    # Removing punctuation and making lower case.
+    output = []
+    for i in wordsDict:
+        new = re.sub(r'[^\w\s]','', i)
+        new = new.lower()
+        output.append(new)
+    wordsDict = output
+
     wordsDict = set(wordsDict)
-    locations = set(locations)
+    # Getting the preprocessed locations from the tuple,
+    # which we then subtract from the wordsList set.
+    locations = set([l[0] for l in locations])
 
     return wordsDict - locations
 
@@ -62,7 +90,7 @@ def preprocessTweets(tweets, wordsNoLocations):
     """
     Preprocesses the tweets, removing tokens that we know won't have locations in them.
     """
-    
+
     def cleanNumbersAndDateTime(tweets):
         """
         Takes the input tweets and cleans them of the two starting numbers
@@ -111,17 +139,19 @@ def preprocessTweets(tweets, wordsNoLocations):
         numWordsRemoved = 0
         output = []
 
-        for tweet in tweets:
+        for tweet, orig in tweets:
             sp = tweet.split()
             noCommon = [w for w in sp if w not in wordsNoLocations]
             numWordsRemoved += len(sp) - len(noCommon)
             new = " ".join(noCommon)
-            output.append(new)
+            output.append((new, orig))
 
         print("        Removed {} common words from tweets.".format(numWordsRemoved))        
         return output            
 
     cleaned = cleanNumbersAndDateTime(tweets)
+    # Call this after getting rid of the numbers and date/time, we don't want that nasty stuff.
+    cleaned = makeTuple(cleaned)
     cleaned = removeNumbers(cleaned)
     cleaned = toLower(cleaned)
     cleaned = removePunctuation(cleaned)
@@ -129,7 +159,7 @@ def preprocessTweets(tweets, wordsNoLocations):
 
     print("    Removing duplicates.")
     oldLen = len(cleaned)
-    cleaned = set(cleaned) # Remove duplicates by converting to a set.
+    cleaned = removeDuplicates(cleaned)
     print("        Removed {} items.".format(oldLen-len(cleaned)))
 
     return cleaned
@@ -139,6 +169,8 @@ def preprocessLocations(locations):
     Preprocesses the locations, removing tokens that we know won't have locations in them.
     """
 
+    locations = makeTuple(locations)
+
     def removeShortLong(locations):
         print("    Removing locations that are too short or long.")
 
@@ -146,7 +178,7 @@ def preprocessLocations(locations):
         output = []
 
         for loc in locations:
-            length = len(loc)
+            length = len(loc[0])
             if length > 4 and length < 70:
                 output.append(loc)
 
@@ -162,7 +194,7 @@ def preprocessLocations(locations):
 
     print("    Removing duplicates.")
     oldLen = len(cleaned)
-    cleaned = set(cleaned) # Remove duplicates by converting to a set.
+    cleaned = removeDuplicates(cleaned)
     print("        Removed {} items.".format(oldLen-len(cleaned)))
 
     return cleaned

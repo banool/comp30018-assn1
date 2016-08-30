@@ -47,19 +47,18 @@ print("Preprocessing tweets...")
 tweets = list(preprocess.preprocessTweets(tweets, wordsNoLocations))
 
 # Creating the fuzziness object. This maxerr represents the max local edit distance.
-fz = tre.Fuzzyness(maxerr=2)
-
-tweets = list(tweets)[:20]
+fz = tre.Fuzzyness(maxerr=3)
 
 # Takes a chunk of locations and checks the tweets for these locations.
 def checkLocations(locations):
     output = []
-    for l in locations:
+    for l, origL in locations:
         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
-        for t in tweets:
+        for t, origT in tweets:
             m = cmpl.search(t, fz)
             if m:
-                output.append((t, l, m.cost))
+                out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}
+                output.append(out)
     return output
 
 locations = list(locations)
