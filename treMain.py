@@ -30,7 +30,7 @@ locationsFile = "geonames/US-loc-names.txt"
 with open(locationsFile, "r") as f:
     locations = f.read().splitlines()
 
-
+# locations = ["San Francisco"]
 
 """
 Preprocessing the tweets and locations data. See preprocessing.py for more info.
@@ -54,7 +54,7 @@ fz = tre.Fuzzyness(maxerr=3)
 def checkLocations(locations):
     output = []
     for l, origL in locations:
-        cmpl = tre.compile(l, tre.EXTENDED)
+        cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
         for t, origT in tweets:
             m = cmpl.search(t, fz)
             if m:
