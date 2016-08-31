@@ -87,7 +87,7 @@ print("--- %s seconds ---" % (time.time() - startTime))
 
 # Dumping results to pickle.
 import pickle
-pickle.dump(res, open("results.p", "wb"))
+pickle.dump(res, open("resultsNoRemovalOfCommonWords.p", "wb"))
 
 
 # Handy line that shows what methods an object has

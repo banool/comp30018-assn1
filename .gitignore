@@ -1,3 +1,6 @@
 porteousd_tweets*
 geonames/*
 *.pyc
+*.p
+*.csv
+*.xlsx

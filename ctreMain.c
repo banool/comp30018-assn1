@@ -489,7 +489,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_7treMain___pyx_scope_struct__chunkGen;
 
-/* "treMain.py":67
+/* "treMain.py":68
  * 
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):             # <<<<<<<<<<<<<<
@@ -1007,7 +1007,6 @@ static const char __pyx_k_Fuzzyness[] = "Fuzzyness";
 static const char __pyx_k_chunkSize[] = "chunkSize";
 static const char __pyx_k_itertools[] = "itertools";
 static const char __pyx_k_locations[] = "locations";
-static const char __pyx_k_results_p[] = "results.p";
 static const char __pyx_k_s_seconds[] = "--- %s seconds ---";
 static const char __pyx_k_startTime[] = "startTime";
 static const char __pyx_k_tweetFile[] = "tweetFile";
@@ -1027,6 +1026,7 @@ static const char __pyx_k_geonames_US_loc_names_txt[] = "geonames/US-loc-names.t
 static const char __pyx_k_porteousd_tweets_small_txt[] = "porteousd_tweets_small.txt";
 static const char __pyx_k_Uses_the_TRE_library_Fetch_it_b[] = "\nUses the TRE library. Fetch it by following the instructions here:\nhttp://laurikari.net/tre/download/\n(so just do this): sudo apt-get install tre-agrep libtre4 libtre-dev\nand then install this package (https://pypi.python.org/pypi/tre/0.8.0) via pip:\nsudo -H pip install tre\n\nTroubles with pip? See this:\nhttps://stackoverflow.com/questions/17886647/cant-install-via-pip-because-of-egg-info-error\n";
 static const char __pyx_k_mnt_e_Dropbox_uni2016_kcomp3001[] = "/mnt/e/Dropbox/uni2016/kcomp30018 - Knowledge Tech/assn1/treMain.py";
+static const char __pyx_k_resultsNoRemovalOfCommonWords_p[] = "resultsNoRemovalOfCommonWords.p";
 static const char __pyx_k_Getting_dictionary_of_common_wor[] = "Getting dictionary of common words without locations...";
 static PyObject *__pyx_n_s_EXTENDED;
 static PyObject *__pyx_n_s_Fuzzyness;
@@ -1091,7 +1091,7 @@ static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_read;
 static PyObject *__pyx_n_s_res;
-static PyObject *__pyx_kp_s_results_p;
+static PyObject *__pyx_kp_s_resultsNoRemovalOfCommonWords_p;
 static PyObject *__pyx_kp_s_s_seconds;
 static PyObject *__pyx_n_s_search;
 static PyObject *__pyx_n_s_send;
@@ -1126,7 +1126,7 @@ static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_codeobj__4;
 static PyObject *__pyx_codeobj__6;
 
-/* "treMain.py":53
+/* "treMain.py":54
  * 
  * # Takes a chunk of locations and checks the tweets for these locations.
  * def checkLocations(locations):             # <<<<<<<<<<<<<<
@@ -1176,19 +1176,19 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
   int __pyx_t_15;
   __Pyx_RefNannySetupContext("checkLocations", 0);
 
-  /* "treMain.py":54
+  /* "treMain.py":55
  * # Takes a chunk of locations and checks the tweets for these locations.
  * def checkLocations(locations):
  *     output = []             # <<<<<<<<<<<<<<
  *     for l, origL in locations:
  *         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_output = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "treMain.py":55
+  /* "treMain.py":56
  * def checkLocations(locations):
  *     output = []
  *     for l, origL in locations:             # <<<<<<<<<<<<<<
@@ -1199,26 +1199,26 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
     __pyx_t_1 = __pyx_v_locations; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -1228,7 +1228,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 55, __pyx_L1_error)
+          else __PYX_ERR(0, 56, __pyx_L1_error)
         }
         break;
       }
@@ -1244,7 +1244,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 55, __pyx_L1_error)
+        __PYX_ERR(0, 56, __pyx_L1_error)
       }
       #if CYTHON_COMPILING_IN_CPYTHON
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -1257,15 +1257,15 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -1273,7 +1273,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -1281,7 +1281,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 55, __pyx_L1_error)
+      __PYX_ERR(0, 56, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_l, __pyx_t_5);
@@ -1289,19 +1289,19 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
     __Pyx_XDECREF_SET(__pyx_v_origL, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "treMain.py":56
+    /* "treMain.py":57
  *     output = []
  *     for l, origL in locations:
  *         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)             # <<<<<<<<<<<<<<
  *         for t, origT in tweets:
  *             m = cmpl.search(t, fz)
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_compile); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_compile); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_b_b, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_b_b, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_9 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_7))) {
@@ -1314,23 +1314,23 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       }
     }
     if (!__pyx_t_9) {
-      __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_l); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_l); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
     } else {
-      __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
       __Pyx_INCREF(__pyx_v_l);
       __Pyx_GIVEREF(__pyx_v_l);
       PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_v_l);
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_EXTENDED); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_EXTENDED); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -1345,7 +1345,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         __pyx_t_11 = 1;
       }
     }
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -1356,29 +1356,29 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_11, __pyx_t_10);
     __pyx_t_6 = 0;
     __pyx_t_10 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_cmpl, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "treMain.py":57
+    /* "treMain.py":58
  *     for l, origL in locations:
  *         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
  *         for t, origT in tweets:             # <<<<<<<<<<<<<<
  *             m = cmpl.search(t, fz)
  *             if m:
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tweets); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tweets); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
       __pyx_t_5 = __pyx_t_4; __Pyx_INCREF(__pyx_t_5); __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 57, __pyx_L1_error)
+      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 58, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     for (;;) {
@@ -1386,17 +1386,17 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 57, __pyx_L1_error)
+          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
           #else
-          __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
         } else {
           if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 57, __pyx_L1_error)
+          __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
           #else
-          __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
         }
@@ -1406,7 +1406,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 57, __pyx_L1_error)
+            else __PYX_ERR(0, 58, __pyx_L1_error)
           }
           break;
         }
@@ -1422,7 +1422,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 57, __pyx_L1_error)
+          __PYX_ERR(0, 58, __pyx_L1_error)
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -1435,15 +1435,15 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         __Pyx_INCREF(__pyx_t_9);
         __Pyx_INCREF(__pyx_t_10);
         #else
-        __pyx_t_9 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 57, __pyx_L1_error)
+        __pyx_t_9 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 58, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 57, __pyx_L1_error)
+        __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 58, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_6 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
+        __pyx_t_6 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_8 = Py_TYPE(__pyx_t_6)->tp_iternext;
@@ -1451,7 +1451,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         __Pyx_GOTREF(__pyx_t_9);
         index = 1; __pyx_t_10 = __pyx_t_8(__pyx_t_6); if (unlikely(!__pyx_t_10)) goto __pyx_L9_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_10);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_6), 2) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_6), 2) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
         __pyx_t_8 = NULL;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         goto __pyx_L10_unpacking_done;
@@ -1459,7 +1459,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_8 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 57, __pyx_L1_error)
+        __PYX_ERR(0, 58, __pyx_L1_error)
         __pyx_L10_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_t, __pyx_t_9);
@@ -1467,16 +1467,16 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       __Pyx_XDECREF_SET(__pyx_v_origT, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "treMain.py":58
+      /* "treMain.py":59
  *         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
  *         for t, origT in tweets:
  *             m = cmpl.search(t, fz)             # <<<<<<<<<<<<<<
  *             if m:
  *                 out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}
  */
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_cmpl, __pyx_n_s_search); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_cmpl, __pyx_n_s_search); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_fz); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_fz); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __pyx_t_6 = NULL;
       __pyx_t_13 = 0;
@@ -1490,7 +1490,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
           __pyx_t_13 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -1501,67 +1501,67 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
       __Pyx_GIVEREF(__pyx_t_9);
       PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_13, __pyx_t_9);
       __pyx_t_9 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_XDECREF_SET(__pyx_v_m, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "treMain.py":59
+      /* "treMain.py":60
  *         for t, origT in tweets:
  *             m = cmpl.search(t, fz)
  *             if m:             # <<<<<<<<<<<<<<
  *                 out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}
  *                 output.append(out)
  */
-      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_v_m); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 59, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_v_m); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
       if (__pyx_t_14) {
 
-        /* "treMain.py":60
+        /* "treMain.py":61
  *             m = cmpl.search(t, fz)
  *             if m:
  *                 out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}             # <<<<<<<<<<<<<<
  *                 output.append(out)
  *     return output
  */
-        __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+        __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_tweet, __pyx_v_origT) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_location, __pyx_v_origL) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
-        __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_m, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_tweet, __pyx_v_origT) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_location, __pyx_v_origL) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_m, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_match, __pyx_t_10) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_match, __pyx_t_10) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_cost); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_cost); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_cost, __pyx_t_10) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_cost, __pyx_t_10) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numdel); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numdel); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numDel, __pyx_t_10) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numDel, __pyx_t_10) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numins); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numins); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numIns, __pyx_t_10) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numIns, __pyx_t_10) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numsub); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_m, __pyx_n_s_numsub); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numSub, __pyx_t_10) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_numSub, __pyx_t_10) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_XDECREF_SET(__pyx_v_out, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "treMain.py":61
+        /* "treMain.py":62
  *             if m:
  *                 out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}
  *                 output.append(out)             # <<<<<<<<<<<<<<
  *     return output
  * 
  */
-        __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_output, __pyx_v_out); if (unlikely(__pyx_t_15 == -1)) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_output, __pyx_v_out); if (unlikely(__pyx_t_15 == -1)) __PYX_ERR(0, 62, __pyx_L1_error)
 
-        /* "treMain.py":59
+        /* "treMain.py":60
  *         for t, origT in tweets:
  *             m = cmpl.search(t, fz)
  *             if m:             # <<<<<<<<<<<<<<
@@ -1570,7 +1570,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
  */
       }
 
-      /* "treMain.py":57
+      /* "treMain.py":58
  *     for l, origL in locations:
  *         cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
  *         for t, origT in tweets:             # <<<<<<<<<<<<<<
@@ -1580,7 +1580,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "treMain.py":55
+    /* "treMain.py":56
  * def checkLocations(locations):
  *     output = []
  *     for l, origL in locations:             # <<<<<<<<<<<<<<
@@ -1590,7 +1590,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "treMain.py":62
+  /* "treMain.py":63
  *                 out = {"tweet": origT, "location": origL, "match": m[0], "cost": m.cost, "numDel": m.numdel, "numIns": m.numins, "numSub": m.numsub}
  *                 output.append(out)
  *     return output             # <<<<<<<<<<<<<<
@@ -1602,7 +1602,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
   __pyx_r = __pyx_v_output;
   goto __pyx_L0;
 
-  /* "treMain.py":53
+  /* "treMain.py":54
  * 
  * # Takes a chunk of locations and checks the tweets for these locations.
  * def checkLocations(locations):             # <<<<<<<<<<<<<<
@@ -1636,7 +1636,7 @@ static PyObject *__pyx_pf_7treMain_checkLocations(CYTHON_UNUSED PyObject *__pyx_
 }
 static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_generator, PyObject *__pyx_sent_value); /* proto */
 
-/* "treMain.py":67
+/* "treMain.py":68
  * 
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):             # <<<<<<<<<<<<<<
@@ -1678,7 +1678,7 @@ static PyObject *__pyx_pw_7treMain_3chunkGen(PyObject *__pyx_self, PyObject *__p
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "chunkGen") < 0)) __PYX_ERR(0, 67, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "chunkGen") < 0)) __PYX_ERR(0, 68, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1693,7 +1693,7 @@ static PyObject *__pyx_pw_7treMain_3chunkGen(PyObject *__pyx_self, PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("chunkGen", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 67, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("chunkGen", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 68, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("treMain.chunkGen", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1724,7 +1724,7 @@ static PyObject *__pyx_pf_7treMain_2chunkGen(CYTHON_UNUSED PyObject *__pyx_self,
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_chunkSize);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_chunkSize);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_7treMain_4generator, (PyObject *) __pyx_cur_scope, __pyx_n_s_chunkGen, __pyx_n_s_chunkGen, __pyx_n_s_treMain); if (unlikely(!gen)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_7treMain_4generator, (PyObject *) __pyx_cur_scope, __pyx_n_s_chunkGen, __pyx_n_s_chunkGen, __pyx_n_s_treMain); if (unlikely(!gen)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -1759,19 +1759,19 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 68, __pyx_L1_error)
 
-  /* "treMain.py":68
+  /* "treMain.py":69
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):
  *     for i in range(0, len(locations), chunkSize):             # <<<<<<<<<<<<<<
  *         yield locations[i:i + chunkSize]
  * 
  */
-  __pyx_t_1 = PyObject_Length(__pyx_cur_scope->__pyx_v_locations); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_cur_scope->__pyx_v_locations); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -1782,16 +1782,16 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_chunkSize);
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_cur_scope->__pyx_v_chunkSize);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_1 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_1 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_1 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -1799,17 +1799,17 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_1 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_1 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -1819,7 +1819,7 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 68, __pyx_L1_error)
+          else __PYX_ERR(0, 69, __pyx_L1_error)
         }
         break;
       }
@@ -1830,16 +1830,16 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "treMain.py":69
+    /* "treMain.py":70
  * def chunkGen(locations, chunkSize=10000):
  *     for i in range(0, len(locations), chunkSize):
  *         yield locations[i:i + chunkSize]             # <<<<<<<<<<<<<<
  * 
  * print
  */
-    __pyx_t_2 = PyNumber_Add(__pyx_cur_scope->__pyx_v_i, __pyx_cur_scope->__pyx_v_chunkSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_cur_scope->__pyx_v_i, __pyx_cur_scope->__pyx_v_chunkSize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_locations, 0, 0, &__pyx_cur_scope->__pyx_v_i, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_locations, 0, 0, &__pyx_cur_scope->__pyx_v_i, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_5;
@@ -1859,9 +1859,9 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
     __pyx_cur_scope->__pyx_t_1 = 0;
     __Pyx_XGOTREF(__pyx_t_3);
     __pyx_t_4 = __pyx_cur_scope->__pyx_t_2;
-    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 69, __pyx_L1_error)
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 70, __pyx_L1_error)
 
-    /* "treMain.py":68
+    /* "treMain.py":69
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):
  *     for i in range(0, len(locations), chunkSize):             # <<<<<<<<<<<<<<
@@ -1871,7 +1871,7 @@ static PyObject *__pyx_gb_7treMain_4generator(__pyx_CoroutineObject *__pyx_gener
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "treMain.py":67
+  /* "treMain.py":68
  * 
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):             # <<<<<<<<<<<<<<
@@ -2106,7 +2106,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_read, __pyx_k_read, sizeof(__pyx_k_read), 0, 0, 1, 1},
   {&__pyx_n_s_res, __pyx_k_res, sizeof(__pyx_k_res), 0, 0, 1, 1},
-  {&__pyx_kp_s_results_p, __pyx_k_results_p, sizeof(__pyx_k_results_p), 0, 0, 1, 0},
+  {&__pyx_kp_s_resultsNoRemovalOfCommonWords_p, __pyx_k_resultsNoRemovalOfCommonWords_p, sizeof(__pyx_k_resultsNoRemovalOfCommonWords_p), 0, 0, 1, 0},
   {&__pyx_kp_s_s_seconds, __pyx_k_s_seconds, sizeof(__pyx_k_s_seconds), 0, 0, 1, 0},
   {&__pyx_n_s_search, __pyx_k_search, sizeof(__pyx_k_search), 0, 0, 1, 1},
   {&__pyx_n_s_send, __pyx_k_send, sizeof(__pyx_k_send), 0, 0, 1, 1},
@@ -2128,7 +2128,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 26, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 69, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2160,52 +2160,52 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "treMain.py":53
+  /* "treMain.py":54
  * 
  * # Takes a chunk of locations and checks the tweets for these locations.
  * def checkLocations(locations):             # <<<<<<<<<<<<<<
  *     output = []
  *     for l, origL in locations:
  */
-  __pyx_tuple__3 = PyTuple_Pack(9, __pyx_n_s_locations, __pyx_n_s_output, __pyx_n_s_l, __pyx_n_s_origL, __pyx_n_s_cmpl, __pyx_n_s_t, __pyx_n_s_origT, __pyx_n_s_m, __pyx_n_s_out); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(9, __pyx_n_s_locations, __pyx_n_s_output, __pyx_n_s_l, __pyx_n_s_origL, __pyx_n_s_cmpl, __pyx_n_s_t, __pyx_n_s_origT, __pyx_n_s_m, __pyx_n_s_out); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_e_Dropbox_uni2016_kcomp3001, __pyx_n_s_checkLocations, 53, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_e_Dropbox_uni2016_kcomp3001, __pyx_n_s_checkLocations, 54, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 54, __pyx_L1_error)
 
-  /* "treMain.py":67
+  /* "treMain.py":68
  * 
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):             # <<<<<<<<<<<<<<
  *     for i in range(0, len(locations), chunkSize):
  *         yield locations[i:i + chunkSize]
  */
-  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_n_s_locations, __pyx_n_s_chunkSize, __pyx_n_s_i); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_n_s_locations, __pyx_n_s_chunkSize, __pyx_n_s_i); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_e_Dropbox_uni2016_kcomp3001, __pyx_n_s_chunkGen, 67, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __pyx_tuple__7 = PyTuple_Pack(1, ((PyObject *)__pyx_int_10000)); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mnt_e_Dropbox_uni2016_kcomp3001, __pyx_n_s_chunkGen, 68, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, ((PyObject *)__pyx_int_10000)); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "treMain.py":76
- * startTime = time.time()
+  /* "treMain.py":79
+ * #locations = [("san francisco", "San Francisco")]
  * 
  * pool = Pool(16)             # <<<<<<<<<<<<<<
  * res = pool.map(checkLocations, chunkGen(locations))
  * 
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_int_16); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_int_16); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "treMain.py":87
+  /* "treMain.py":90
  * # Dumping results to pickle.
  * import pickle
- * pickle.dump(res, open("results.p", "wb"))             # <<<<<<<<<<<<<<
+ * pickle.dump(res, open("resultsNoRemovalOfCommonWords.p", "wb"))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_kp_s_results_p, __pyx_n_s_wb); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_kp_s_resultsNoRemovalOfCommonWords_p, __pyx_n_s_wb); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
   __Pyx_RefNannyFinishContext();
@@ -2328,7 +2328,7 @@ PyMODINIT_FUNC PyInit_treMain(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_7treMain___pyx_scope_struct__chunkGen) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7treMain___pyx_scope_struct__chunkGen) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   __pyx_type_7treMain___pyx_scope_struct__chunkGen.tp_print = 0;
   __pyx_ptype_7treMain___pyx_scope_struct__chunkGen = &__pyx_type_7treMain___pyx_scope_struct__chunkGen;
   /*--- Type import code ---*/
@@ -2685,7 +2685,7 @@ PyMODINIT_FUNC PyInit_treMain(void)
  * with open(locationsFile, "r") as f:
  *     locations = f.read().splitlines()             # <<<<<<<<<<<<<<
  * 
- * 
+ * # locations = ["San Francisco"]
  */
           __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_f); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L22_error)
           __Pyx_GOTREF(__pyx_t_5);
@@ -2818,37 +2818,37 @@ PyMODINIT_FUNC PyInit_treMain(void)
     __pyx_L33:;
   }
 
-  /* "treMain.py":37
+  /* "treMain.py":38
  * Preprocessing the tweets and locations data. See preprocessing.py for more info.
  * """
  * print             # <<<<<<<<<<<<<<
  * print("Preprocessing locations...")
  * locations = preprocess.preprocessLocations(locations)
  */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
 
-  /* "treMain.py":38
+  /* "treMain.py":39
  * """
  * print
  * print("Preprocessing locations...")             # <<<<<<<<<<<<<<
  * locations = preprocess.preprocessLocations(locations)
  * 
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Preprocessing_locations) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Preprocessing_locations) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
 
-  /* "treMain.py":39
+  /* "treMain.py":40
  * print
  * print("Preprocessing locations...")
  * locations = preprocess.preprocessLocations(locations)             # <<<<<<<<<<<<<<
  * 
  * print
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_preprocessLocations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_preprocessLocations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -2861,55 +2861,55 @@ PyMODINIT_FUNC PyInit_treMain(void)
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_12 = PyTuple_New(1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_12 = PyTuple_New(1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_5); __pyx_t_5 = NULL;
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_12, 0+1, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_12, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_12, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_locations, __pyx_t_2) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_locations, __pyx_t_2) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":41
+  /* "treMain.py":42
  * locations = preprocess.preprocessLocations(locations)
  * 
  * print             # <<<<<<<<<<<<<<
  * print("Getting dictionary of common words without locations...")
  * wordsNoLocations = preprocess.getWordsNoLocationsDict(locations)
  */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
 
-  /* "treMain.py":42
+  /* "treMain.py":43
  * 
  * print
  * print("Getting dictionary of common words without locations...")             # <<<<<<<<<<<<<<
  * wordsNoLocations = preprocess.getWordsNoLocationsDict(locations)
  * 
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Getting_dictionary_of_common_wor) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Getting_dictionary_of_common_wor) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
 
-  /* "treMain.py":43
+  /* "treMain.py":44
  * print
  * print("Getting dictionary of common words without locations...")
  * wordsNoLocations = preprocess.getWordsNoLocationsDict(locations)             # <<<<<<<<<<<<<<
  * 
  * print
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_getWordsNoLocationsDict); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_getWordsNoLocationsDict); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_12))) {
@@ -2922,57 +2922,57 @@ PyMODINIT_FUNC PyInit_treMain(void)
     }
   }
   if (!__pyx_t_1) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 44, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1); __pyx_t_1 = NULL;
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wordsNoLocations, __pyx_t_2) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wordsNoLocations, __pyx_t_2) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":45
+  /* "treMain.py":46
  * wordsNoLocations = preprocess.getWordsNoLocationsDict(locations)
  * 
  * print             # <<<<<<<<<<<<<<
  * print("Preprocessing tweets...")
  * tweets = list(preprocess.preprocessTweets(tweets, wordsNoLocations))
  */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
 
-  /* "treMain.py":46
+  /* "treMain.py":47
  * 
  * print
  * print("Preprocessing tweets...")             # <<<<<<<<<<<<<<
  * tweets = list(preprocess.preprocessTweets(tweets, wordsNoLocations))
  * 
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Preprocessing_tweets) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Preprocessing_tweets) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
 
-  /* "treMain.py":47
+  /* "treMain.py":48
  * print
  * print("Preprocessing tweets...")
  * tweets = list(preprocess.preprocessTweets(tweets, wordsNoLocations))             # <<<<<<<<<<<<<<
  * 
  * # Creating the fuzziness object. This maxerr represents the max local edit distance.
  */
-  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_preprocess); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_preprocessTweets); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_preprocessTweets); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_tweets); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_tweets); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_wordsNoLocations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_wordsNoLocations); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_1 = NULL;
   __pyx_t_13 = 0;
@@ -2986,7 +2986,7 @@ PyMODINIT_FUNC PyInit_treMain(void)
       __pyx_t_13 = 1;
     }
   }
-  __pyx_t_14 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_14 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   if (__pyx_t_1) {
     __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_1); __pyx_t_1 = NULL;
@@ -2997,106 +2997,106 @@ PyMODINIT_FUNC PyInit_treMain(void)
   PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_13, __pyx_t_4);
   __pyx_t_12 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_5 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_tweets, __pyx_t_5) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_tweets, __pyx_t_5) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "treMain.py":50
+  /* "treMain.py":51
  * 
  * # Creating the fuzziness object. This maxerr represents the max local edit distance.
  * fz = tre.Fuzzyness(maxerr=3)             # <<<<<<<<<<<<<<
  * 
  * # Takes a chunk of locations and checks the tweets for these locations.
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_tre); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_Fuzzyness); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_Fuzzyness); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_maxerr, __pyx_int_3) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
-  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_maxerr, __pyx_int_3) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fz, __pyx_t_14) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fz, __pyx_t_14) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-  /* "treMain.py":53
+  /* "treMain.py":54
  * 
  * # Takes a chunk of locations and checks the tweets for these locations.
  * def checkLocations(locations):             # <<<<<<<<<<<<<<
  *     output = []
  *     for l, origL in locations:
  */
-  __pyx_t_14 = __Pyx_CyFunction_NewEx(&__pyx_mdef_7treMain_1checkLocations, 0, __pyx_n_s_checkLocations, NULL, __pyx_n_s_treMain, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_CyFunction_NewEx(&__pyx_mdef_7treMain_1checkLocations, 0, __pyx_n_s_checkLocations, NULL, __pyx_n_s_treMain, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_checkLocations, __pyx_t_14) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_checkLocations, __pyx_t_14) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-  /* "treMain.py":64
+  /* "treMain.py":65
  *     return output
  * 
  * locations = list(locations)             # <<<<<<<<<<<<<<
  * 
  * # Generator that produces chunks of the larger list of locations.
  */
-  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_5 = PySequence_List(__pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_5 = PySequence_List(__pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_locations, __pyx_t_5) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_locations, __pyx_t_5) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "treMain.py":67
+  /* "treMain.py":68
  * 
  * # Generator that produces chunks of the larger list of locations.
  * def chunkGen(locations, chunkSize=10000):             # <<<<<<<<<<<<<<
  *     for i in range(0, len(locations), chunkSize):
  *         yield locations[i:i + chunkSize]
  */
-  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_7treMain_3chunkGen, 0, __pyx_n_s_chunkGen, NULL, __pyx_n_s_treMain, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_7treMain_3chunkGen, 0, __pyx_n_s_chunkGen, NULL, __pyx_n_s_treMain, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_5, __pyx_tuple__7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_chunkGen, __pyx_t_5) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_chunkGen, __pyx_t_5) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "treMain.py":71
+  /* "treMain.py":72
  *         yield locations[i:i + chunkSize]
  * 
  * print             # <<<<<<<<<<<<<<
  * print("Starting search...")
  * 
  */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
 
-  /* "treMain.py":72
+  /* "treMain.py":73
  * 
  * print
  * print("Starting search...")             # <<<<<<<<<<<<<<
  * 
  * startTime = time.time()
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Starting_search) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Starting_search) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
 
-  /* "treMain.py":74
+  /* "treMain.py":75
  * print("Starting search...")
  * 
  * startTime = time.time()             # <<<<<<<<<<<<<<
  * 
- * pool = Pool(16)
+ * #locations = [("san francisco", "San Francisco")]
  */
-  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   __pyx_t_14 = NULL;
@@ -3110,48 +3110,48 @@ PyMODINIT_FUNC PyInit_treMain(void)
     }
   }
   if (__pyx_t_14) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_startTime, __pyx_t_5) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_startTime, __pyx_t_5) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "treMain.py":76
- * startTime = time.time()
+  /* "treMain.py":79
+ * #locations = [("san francisco", "San Francisco")]
  * 
  * pool = Pool(16)             # <<<<<<<<<<<<<<
  * res = pool.map(checkLocations, chunkGen(locations))
  * 
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_Pool); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_Pool); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pool, __pyx_t_2) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pool, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":77
+  /* "treMain.py":80
  * 
  * pool = Pool(16)
  * res = pool.map(checkLocations, chunkGen(locations))             # <<<<<<<<<<<<<<
  * 
  * res = [item for sublist in res for item in sublist]
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_pool); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_pool); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_map); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_map); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_checkLocations); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_checkLocations); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_chunkGen); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_chunkGen); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_locations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_15 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_12))) {
@@ -3164,17 +3164,17 @@ PyMODINIT_FUNC PyInit_treMain(void)
     }
   }
   if (!__pyx_t_15) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_4);
   } else {
-    __pyx_t_16 = PyTuple_New(1+1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __pyx_t_16 = PyTuple_New(1+1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
     __Pyx_GIVEREF(__pyx_t_15); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_15); __pyx_t_15 = NULL;
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_16, 0+1, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_16, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_16, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   }
@@ -3191,7 +3191,7 @@ PyMODINIT_FUNC PyInit_treMain(void)
       __pyx_t_13 = 1;
     }
   }
-  __pyx_t_16 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_16 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
   if (__pyx_t_12) {
     __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -3202,31 +3202,31 @@ PyMODINIT_FUNC PyInit_treMain(void)
   PyTuple_SET_ITEM(__pyx_t_16, 1+__pyx_t_13, __pyx_t_4);
   __pyx_t_5 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_res, __pyx_t_2) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_res, __pyx_t_2) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":79
+  /* "treMain.py":82
  * res = pool.map(checkLocations, chunkGen(locations))
  * 
  * res = [item for sublist in res for item in sublist]             # <<<<<<<<<<<<<<
  * print(res)
  * print(len(res))
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   if (likely(PyList_CheckExact(__pyx_t_14)) || PyTuple_CheckExact(__pyx_t_14)) {
     __pyx_t_16 = __pyx_t_14; __Pyx_INCREF(__pyx_t_16); __pyx_t_13 = 0;
     __pyx_t_17 = NULL;
   } else {
-    __pyx_t_13 = -1; __pyx_t_16 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_13 = -1; __pyx_t_16 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
-    __pyx_t_17 = Py_TYPE(__pyx_t_16)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_17 = Py_TYPE(__pyx_t_16)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   for (;;) {
@@ -3234,17 +3234,17 @@ PyMODINIT_FUNC PyInit_treMain(void)
       if (likely(PyList_CheckExact(__pyx_t_16))) {
         if (__pyx_t_13 >= PyList_GET_SIZE(__pyx_t_16)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_14 = PyList_GET_ITEM(__pyx_t_16, __pyx_t_13); __Pyx_INCREF(__pyx_t_14); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+        __pyx_t_14 = PyList_GET_ITEM(__pyx_t_16, __pyx_t_13); __Pyx_INCREF(__pyx_t_14); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
         #else
-        __pyx_t_14 = PySequence_ITEM(__pyx_t_16, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+        __pyx_t_14 = PySequence_ITEM(__pyx_t_16, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         #endif
       } else {
         if (__pyx_t_13 >= PyTuple_GET_SIZE(__pyx_t_16)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_16, __pyx_t_13); __Pyx_INCREF(__pyx_t_14); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+        __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_16, __pyx_t_13); __Pyx_INCREF(__pyx_t_14); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
         #else
-        __pyx_t_14 = PySequence_ITEM(__pyx_t_16, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+        __pyx_t_14 = PySequence_ITEM(__pyx_t_16, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         #endif
       }
@@ -3254,23 +3254,23 @@ PyMODINIT_FUNC PyInit_treMain(void)
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 79, __pyx_L1_error)
+          else __PYX_ERR(0, 82, __pyx_L1_error)
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_14);
     }
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_sublist, __pyx_t_14) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_sublist, __pyx_t_14) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_sublist); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_sublist); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
     if (likely(PyList_CheckExact(__pyx_t_14)) || PyTuple_CheckExact(__pyx_t_14)) {
       __pyx_t_4 = __pyx_t_14; __Pyx_INCREF(__pyx_t_4); __pyx_t_18 = 0;
       __pyx_t_19 = NULL;
     } else {
-      __pyx_t_18 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_18 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_19 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_19 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 82, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
     for (;;) {
@@ -3278,17 +3278,17 @@ PyMODINIT_FUNC PyInit_treMain(void)
         if (likely(PyList_CheckExact(__pyx_t_4))) {
           if (__pyx_t_18 >= PyList_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_14 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_18); __Pyx_INCREF(__pyx_t_14); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+          __pyx_t_14 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_18); __Pyx_INCREF(__pyx_t_14); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
           #else
-          __pyx_t_14 = PySequence_ITEM(__pyx_t_4, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+          __pyx_t_14 = PySequence_ITEM(__pyx_t_4, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           #endif
         } else {
           if (__pyx_t_18 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_18); __Pyx_INCREF(__pyx_t_14); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+          __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_18); __Pyx_INCREF(__pyx_t_14); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
           #else
-          __pyx_t_14 = PySequence_ITEM(__pyx_t_4, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+          __pyx_t_14 = PySequence_ITEM(__pyx_t_4, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           #endif
         }
@@ -3298,63 +3298,63 @@ PyMODINIT_FUNC PyInit_treMain(void)
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 79, __pyx_L1_error)
+            else __PYX_ERR(0, 82, __pyx_L1_error)
           }
           break;
         }
         __Pyx_GOTREF(__pyx_t_14);
       }
-      if (PyDict_SetItem(__pyx_d, __pyx_n_s_item, __pyx_t_14) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_d, __pyx_n_s_item, __pyx_t_14) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-      __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_item); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_item); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_14))) __PYX_ERR(0, 79, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_14))) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_res, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_res, __pyx_t_2) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":80
+  /* "treMain.py":83
  * 
  * res = [item for sublist in res for item in sublist]
  * print(res)             # <<<<<<<<<<<<<<
  * print(len(res))
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":81
+  /* "treMain.py":84
  * res = [item for sublist in res for item in sublist]
  * print(res)
  * print(len(res))             # <<<<<<<<<<<<<<
  * 
  * print("--- %s seconds ---" % (time.time() - startTime))
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_13 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_13 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "treMain.py":83
+  /* "treMain.py":86
  * print(len(res))
  * 
  * print("--- %s seconds ---" % (time.time() - startTime))             # <<<<<<<<<<<<<<
  * 
  * # Dumping results to pickle.
  */
-  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   __pyx_t_16 = NULL;
@@ -3368,52 +3368,52 @@ PyMODINIT_FUNC PyInit_treMain(void)
     }
   }
   if (__pyx_t_16) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_startTime); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_startTime); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_16 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_16 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_s_seconds, __pyx_t_16); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_s_seconds, __pyx_t_16); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_4) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "treMain.py":86
+  /* "treMain.py":89
  * 
  * # Dumping results to pickle.
  * import pickle             # <<<<<<<<<<<<<<
- * pickle.dump(res, open("results.p", "wb"))
+ * pickle.dump(res, open("resultsNoRemovalOfCommonWords.p", "wb"))
  * 
  */
-  __pyx_t_4 = __Pyx_Import(__pyx_n_s_pickle, 0, -1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Import(__pyx_n_s_pickle, 0, -1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pickle, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pickle, __pyx_t_4) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "treMain.py":87
+  /* "treMain.py":90
  * # Dumping results to pickle.
  * import pickle
- * pickle.dump(res, open("results.p", "wb"))             # <<<<<<<<<<<<<<
+ * pickle.dump(res, open("resultsNoRemovalOfCommonWords.p", "wb"))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_pickle); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_pickle); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_dump); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_dump); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_16 = __Pyx_GetModuleGlobalName(__pyx_n_s_res); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
-  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __pyx_t_5 = NULL;
   __pyx_t_13 = 0;
@@ -3427,7 +3427,7 @@ PyMODINIT_FUNC PyInit_treMain(void)
       __pyx_t_13 = 1;
     }
   }
-  __pyx_t_12 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_12 = PyTuple_New(2+__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   if (__pyx_t_5) {
     __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3438,14 +3438,14 @@ PyMODINIT_FUNC PyInit_treMain(void)
   PyTuple_SET_ITEM(__pyx_t_12, 1+__pyx_t_13, __pyx_t_14);
   __pyx_t_16 = 0;
   __pyx_t_14 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_12, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_12, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "treMain.py":1
- * #!/usr/bin/python             # <<<<<<<<<<<<<<
+ * #!/usr/local/bin/python             # <<<<<<<<<<<<<<
  * 
  * """
  */
