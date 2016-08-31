@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 """
 Uses the TRE library. Fetch it by following the instructions here:
@@ -31,6 +31,7 @@ with open(locationsFile, "r") as f:
     locations = f.read().splitlines()
 
 
+
 """
 Preprocessing the tweets and locations data. See preprocessing.py for more info.
 """
@@ -53,7 +54,7 @@ fz = tre.Fuzzyness(maxerr=3)
 def checkLocations(locations):
     output = []
     for l, origL in locations:
-        cmpl = tre.compile(r"\b{}\b".format(l), tre.EXTENDED)
+        cmpl = tre.compile(l, tre.EXTENDED)
         for t, origT in tweets:
             m = cmpl.search(t, fz)
             if m:
@@ -72,6 +73,8 @@ print
 print("Starting search...")
 
 startTime = time.time()
+
+#locations = [("san francisco", "San Francisco")]
 
 pool = Pool(16)
 res = pool.map(checkLocations, chunkGen(locations))

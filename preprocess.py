@@ -155,7 +155,8 @@ def preprocessTweets(tweets, wordsNoLocations):
     cleaned = removeNumbers(cleaned)
     cleaned = toLower(cleaned)
     cleaned = removePunctuation(cleaned)
-    cleaned = removeCommonWords(cleaned, wordsNoLocations)
+    # Removed, this was erroneously removing more words than I had hoped for. E.g. Both San and Francisco were gone in San Francisco.
+    # cleaned = removeCommonWords(cleaned, wordsNoLocations)
 
     print("    Removing duplicates.")
     oldLen = len(cleaned)
