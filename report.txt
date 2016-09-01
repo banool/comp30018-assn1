@@ -128,3 +128,37 @@ WE SEE THAT AS WE INCREASE EDIT DISTANCE/FUZZYNESS, PRECISION GOES DOWN. THESE R
 
 
 \end{document}
+
+
+# Handy line that shows what methods an object has
+# from here: https://stackoverflow.com/questions/34439/finding-what-methods-an-object-has
+# print([method for method in dir(mine) if callable(getattr(mine, method))])
+
+"""
+for t in tweets:
+    cmpl = tre.compile(t, tre.EXTENDED)
+    for l in locations:
+        print(l)
+        m = cmpl.search(l, fz)
+        if m:
+            print(m.groups())
+            print(m[0])
+"""
+
+"""
+Converting to C code, compiling that C code and running using Cython:
+cython --embed -o ctreMain.c treMain.py && gcc -Os -I /usr/include/python2.7 -o ctreMain ctreMain.c -lpython2.7 -lpthread -lm -lutil -ldl && ./ctreMain
+"""
+
+"""
+startTime = time.time()
+for l in locations:
+    cmpl = tre.compile(r"{}".format(l), tre.EXTENDED)
+    for t in tweets:
+        m = cmpl.search(t, fz)
+        if m:
+            print(t, l)
+            #print(m.cost)
+            #print(m[0])
+print("--- %s seconds ---" % (time.time() - startTime))
+"""
