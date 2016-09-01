@@ -13,7 +13,7 @@ get rid of words in tweet that arent locations??????
 coudl tokenize but local edit distance as an alg focuses on substrings anyway. toeknizing would make more sense for global edit distance.
 		
 Abstract
-In analysing ~1.3 million locations and ~300k tweets, the number of Levenshtein distance calculations that need to be performed numbers around ~4 billion. This number of calculations is more than large enough to consider algorithmic time complexity as a very important factor. With this in mind, the TRE library was selected, which features a local edit distance algorithm with a reasonable time complexity of `O(m^2 n)`, where `m` is the length of the regex query and `n` is the length of the string being searched. In such a problem, no constant reduction in the amount of work to be done will counterbalance a good algorithm. Nonetheless, several preprocessing steps were taken which cut down the search space quite significantly, ranging from standard procedures like removing punctuation to more complicated steps such as removing all the very common (non-location) words from the tweets. Compared to an algorithm like global edit distance, in which tweets can be tokenized, local edit distance is not as efficient because it must consider the whole tweet and all permutations of it n-edit-distance from the original. This is obviously more complicated than considering permutations of just small, distinct tokens. However the increased complexity comes with its benefits. ???More matches???(isnt this potentially bad also)?????
+In analysing ~1.3 million locations and ~300k tweets, the number of Levenshtein distance calculations that need to be performed numbers around ~400 billion. This number of calculations is more than large enough to consider algorithmic time complexity as a very important factor. With this in mind, the TRE library was selected, which features a local edit distance algorithm with a reasonable time complexity of `O(m^2 n)`, where `m` is the length of the regex query and `n` is the length of the string being searched. In such a problem, no constant reduction in the amount of work to be done will counterbalance a good algorithm. Nonetheless, several preprocessing steps were taken which cut down the search space quite significantly, ranging from standard procedures like removing punctuation to more complicated steps such as removing all the very common (non-location) words from the tweets. Compared to an algorithm like global edit distance, in which tweets can be tokenized, local edit distance is not as efficient because it must consider the whole tweet and all permutations of it n-edit-distance from the original. This is obviously more complicated than considering permutations of just small, distinct tokens. However the increased complexity comes with its benefits. ???More matches???(isnt this potentially bad also)?????
 
 TRE has a few advantages:
     - extended regex
@@ -36,3 +36,95 @@ Algorithm and Data Structure
 Efficiency
 
 Effectiveness (various correctness measures)
+
+\documentclass[twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\setlength{\columnsep}{3em}
+
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{textcomp}
+ 
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\title{COMP30018 Knowledge Technologies \\ \large Implementing local edit distance with the TRE library}
+\author{Daniel Porteous 696965}
+\date{August 2016}
+
+\addbibresource{bib.bib}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+
+\section{Introduction}
+The algorithm examined in this report is local edit distance, namely with the standard Levenshtein distance scoring mechanism. The library in question is the TRE library, an efficient local edit distance implementation written in C, which is operated with a Python wrapper. The scope of the problem is beyond non-trivial, with an extremely large amount of data. In analysing $\simeq$1.3 million locations and $\simeq$300 thousand tweets, the number of Levenshtein distance calculations that need to be performed numbers around $\simeq$400 billion. In each of these location/tweet combinations, there have to be checks for matches of different edit distances. The final tool is fairly efficient and robust, though can be imprecise, solutions for which are discussed in the report.
+
+\section{Algorithm choice}
+Local edit distance ideally treats a tweet as a monolithic entity, as opposed to tokenizing like would be done for a global edit distance implementation (the same applies for the location names, in the event of a multi-word location). Treating the data as such has its advantages and disadvantages. Local edit distance is often not as efficient because it must consider the whole tweet and all permutations of it n-edit-distance from the original. This is obviously more complicated than considering permutations of just small, distinct tokens. However the increased complexity comes with its benefits. Local edit distance excels at finding matches for locations with multiple words
+
+\begin{enumerate}
+\item Going to Washingtn FC \textrightarrow Washington DC (Levenshtein edit distance = 2)
+\end{enumerate}
+
+as well as spelling errors that cross space boundaries
+
+\begin{enumerate}[resume]
+\item Going tob oston today \textrightarrow Boston (Levenshtein edit distance = 2)
+\end{enumerate}
+
+To do the former with global edit distance requires examining all the permutations of the tokens in respect to the length of the location being searched for, which diminishes the advantages global edit distance considerably. The latter task is even harder, as adjacent tokens will have to be considered on a per-character basis anyway.
+
+\subsection{TRE library}
+The TRE implementation of local edit distance features a per-search time complexity of $\mathcal{O}(n^2{}m)$\footnote{\cite{treguy} Laurikari 2016}, where $m$ is the length of the regex query and $n$ is the length of the string being searched. While quadratic complexities are generally undesirable, the quadratic factor is on the location which are generally quite small compared to the length of the tweet. With additional pre-processing, this assurance can be reinforced further (maybe mention like "which is discussed in the next section"). As such, the quadratic factor won't scale too heavily.
+
+\section{Pre-processing}
+\subsection{Basic operations}
+
+Some basic operations were first performed to clean up the data sets. The small tweets file was comprised of 65969 words, which by the end of basic pre-processing was trimmed down to about $\simeq$40000 (consider that each tweet had 4 unimportant tokens, the numbers at the start and the datetime at the end).
+
+\begin{enumerate}
+\item Removing unnecessary tokens from tweets, namely the two numbers at the start and the datetime at the end (assuming they had them).
+\item Removing punctuation and converting all characters to lower case for both locations and tweets.
+\item For locations, removing tokens that are predominantly numbers and then removing duplicates. In the location set this removes 60158 items.
+\item Removing locations that are too short (4 chars) or long (70 chars). This removes 26995 items, but has trade-offs to be discussed later.
+\end{enumerate}
+
+More heavy pre-processing steps could be performed taking into account twitter conventions, for example that rt: means a retweet or @ precedes a username, which could likely be safely ignored (though rarely a place will have an associated twitter account).
+
+\subsection{Removal of common words}
+This pre-processing step was tested with mixed results. The idea involved the following steps
+
+\begin{enumerate}
+\item Get the standard dictionary of words in UNIX systems from /usr/share/dict/words.
+\item Iterate through the list, removing all locations in US-loc-names.txt from the dictionary. This leaves a dictionary of common words without location names.
+\item Using this dictionary, remove all common words from all tweets, ideally leaving behind only location words.
+\end{enumerate}
+
+This method significantly trimmed down the number of words in the tweets from $\simeq$40000 (ie. after previous pre-processing) by 33869 to $\simeq$6000, a significant decrease.
+
+While it may seem like this would hinder matching of multi-word locations (eg. \textit{Kaby Lake}) because of the common word lake, the US-loc-names.txt dictionary actually has many places with names such as \textit{Lake} alone. This prevented such issues from occurring as often as would be expected, making it a surprisingly valid method. Unfortunately, some other examples did suffer due to this process, for example removal of the token \textit{San} from \textit{San Francisco}. Nonetheless, the improvement in run time was significant. Runtime with this improvement sat at $\simeq$35 minutes, whereas without it required $\simeq$165 minutes. Further developments and refinements of such a method could yield substantial improvements in future iterations of such a toolkit.
+
+\section{Precision analysis}
+Before analysing precision of the core algorithm, it is interesting to note that precision was much higher with the removing-common-words pre-processing step activated, sitting at BLAH FOR BLAH TWEETS. This is logical because there are far fewer common words for the algorithm to incorrectly match with. Consider however that this result is artificially inflated by the number of matches it would've completely missed, such as the previously mentioned \textit{San Francisco} example, signifying a lower degree of accuracy, another noteworthy performance metric.
+
+\subsection{Precision metric}
+In analysing the performance of the algorithm, precision is defined in terms of equation: correct matches/number of matches. The notion of a correct match is difficult to define. An algorithm such as this cannot intuitively tell whether a match is truly correct. Indeed, as far as the algorithm is concerned, each one of these matches \textbf{is} a correct because it is within the given edit distance of one of the locations in the dictionary. As such, the following precision measure was ascertained by  selecting a random subset of all the matches and deciding whether the matched location is what the user intended, for example \textit{Berkley} \textrightarrow \textit{Berkeley}, or not, for example \textit{Coupon} \textrightarrow \textit{Boston}. 
+
+\subsection{Results}
+
+TODO talk about the results, probs new subheading.
+
+
+WE SEE THAT AS WE INCREASE EDIT DISTANCE/FUZZYNESS, PRECISION GOES DOWN. THESE RESULTS ARE TO BE EXPECTED, AS WITH EACH INCREASE IN THE EDIT DISTANCE A FAR GREATER RANGE OF LOCATIONS COULD MATCH, THE VAST MAJORITY OF WHICH WONT BE CORRECT MATCHES.
+
+\printbibliography
+
+
+\end{document}
