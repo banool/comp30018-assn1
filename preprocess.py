@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+"""
+Daniel Porteous
+696965
+"""
+
 import re
 from collections import Counter
 
@@ -156,7 +161,7 @@ def preprocessTweets(tweets, wordsNoLocations):
     cleaned = toLower(cleaned)
     cleaned = removePunctuation(cleaned)
     # Removed, this was erroneously removing more words than I had hoped for. E.g. San was gone in San Francisco.
-    # cleaned = removeCommonWords(cleaned, wordsNoLocations)
+    cleaned = removeCommonWords(cleaned, wordsNoLocations)
 
     print("    Removing duplicates.")
     oldLen = len(cleaned)

@@ -1,6 +1,11 @@
 #!/usr/local/bin/python
 
 """
+Daniel Porteous
+696965
+"""
+
+"""
 Uses the TRE library. Fetch it by following the instructions here:
 http://laurikari.net/tre/download/
 (so just do this): sudo apt-get install tre-agrep libtre4 libtre-dev
@@ -74,7 +79,7 @@ def checkLocations(locations):
                 output.append(out)
     return output
 
-locations = list(locations)
+locations = list(locations)[:10]
 
 
 
@@ -163,7 +168,7 @@ res = mainSearch(locations, 3)
 
 # Uncomment this if using getNTweetsWithFuzz for a csv printout.
 """
-with open("resultsDist1_200.csv", "w") as f:
+with open("resultsDist1_200_NoCommonWords.csv", "w") as f:
     w = csv.DictWriter(f, res[0].keys())
     w.writeheader()
     w.writerows(res)
