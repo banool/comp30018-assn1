@@ -10,7 +10,7 @@ https://github.com/laurikari/tre
 All credit of course to Ville Laurikari for a great library, even if the pydocs are a bit limited.
 
 Following this, all you have to do is run it from the command line (assuming 
-that the location and twitter data are in the expected locations).
+that the location and twitter data are in the expected locations). I haven't included them here for data duplication purposes (they're already on the server).
 preprocess.py can also be run on its own using a sample set of data.
 
 For example, do the following:
@@ -28,3 +28,5 @@ The basic functioning of the system is the following:
 Be careful using this script as it utilises multiprocessing and will quickly
 take control over pretty much 100% CPU usage. The parameters are easy enough
 to change within the script though (map.Pool), so it shouldn't be a worry.
+
+The .csv files are just there because I vaguely referenced them in my report, they're the manually checked tweets.
