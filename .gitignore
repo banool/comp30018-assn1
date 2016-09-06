@@ -5,3 +5,4 @@ geonames/*
 *.csv
 *.xlsx
 ctreMain
+latex/*
