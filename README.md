@@ -46,3 +46,11 @@ take control over pretty much 100% CPU usage. The parameters are easy enough
 to change within the script though (map.Pool), so it shouldn't be a worry.
 
 The .csv files here are just there because I vaguely referenced them in my report, they're the manually checked tweets. The original data is not included in the repo because it is far too large.
+
+## Results
+
+Final result: 14.5/15
+
+Critical analysis: 6/6 || Creativity: 2/2 || Soundness: 4/4 || Report quality: 2.5/3
+
+The 0.5 was lost for report being slightly too long.
