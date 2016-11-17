@@ -27,14 +27,14 @@ preprocess.py can also be run on its own using a sample set of data.
 For example, do the following:
 ./treMain.py
 
-## Basic fuunctionality
+## Basic functionality
 
 The basic functioning of the system is the following:
 
 1. The location, tweet and other useful data are read in.
 2. This data is pre-processed by the functions in preprocess.py
 3. The locations are broken into chunks by a generator and passed to a multiprocessing based map function.
-4. Each spawned process will iterate through each location, checking all the tweets for any instance of it. To do this it compiles a regex for a location, which is then searched for in each tweet given a set "fuzzyness" (edit distance).
+4. Each spawned process will iterate through each location, checking all the tweets for any instance of it. To do this it compiles a regex for a location, which is then searched for in each tweet given a set "fuzziness" (edit distance).
 5. Once all the locations in the chunk (around 10k per chunk), it will report back a list of dictionaries with the tweet, location and match in question, as well as cost information. 
 6. The main process keeps dishing out chunks until it is all entirely done.
 7. The final results are by default dumped to a pickle file, but can just as easily be put in a csv file.
